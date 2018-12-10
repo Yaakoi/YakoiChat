@@ -3,26 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using YakoiChatAPI.Models.Services;
+using YakoiChatAPI.Models;
 
 namespace YakoiChatAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UserController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+
+        private readonly YakoiChatContext _ctx;
+
+        public UserController(YakoiChatContext context)
         {
-            return new string[] { "TEST", "value2" };
+            _ctx = context;
         }
 
-        // GET api/values/5
+
+        // GET api/user
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var user = new ServiceUser(_ctx).GetUserById(id);
+
+            return Ok(user);
+            
         }
+
+        
 
         // POST api/values
         [HttpPost]
