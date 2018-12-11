@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YakoiChatAPI.Models.Business;
 
-namespace YakoiChatAPI.Models.Mapper
+namespace YakoiChatAPI.Models.Business.Mapper
 {
     public class MapperUser
     {
@@ -34,11 +34,7 @@ namespace YakoiChatAPI.Models.Mapper
                 Pseudo = value.Pseudo,
                 Password = value.Password,
                 Experience = value.Experience,
-                Role = new Role
-                {
-                    Id = value.IdRole,
-                    Name = value.Role.Name
-                }
+                
             };
         }
 

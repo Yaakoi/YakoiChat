@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YakoiChatAPI.Models.Services;
 using YakoiChatAPI.Models;
+using YakoiChatAPI.Models.Business;
+using Microsoft.AspNetCore.Authorization;
 
 namespace YakoiChatAPI.Controllers
 {
@@ -19,6 +21,14 @@ namespace YakoiChatAPI.Controllers
             _ctx = context;
         }
 
+        // GET api/group/id
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetGroupById(int id)
+        {
+            var group = new ServiceGroup(_ctx).GetGroupById(id);
+            return Ok(group);
+        }
+
         // GET api/group/users
         [HttpGet("{id}/users", Name = "Users_List")]
         public async Task<IActionResult> GetListUser(int id)
@@ -27,6 +37,28 @@ namespace YakoiChatAPI.Controllers
 
             return Ok(groupUsers);
 
+        }
+
+        // POST api/group
+        
+        [HttpPost]
+        public async Task<IActionResult> AddGroup([FromBody] Group group, int IdUser, int RoleUser)
+        {
+            if(RoleUser != 1)
+            {
+                return Unauthorized("Tu n'es pas Admin !");
+            }
+            var sGroup = new ServiceGroup(_ctx);
+            var xGroup = sGroup.Add(group, IdUser);
+            return Created($"api/group/" + xGroup.Id, group);
+        }
+
+        [HttpPost("user")]
+        public async Task<IActionResult> AddUserInGroup(int IdGroup, int IdUser)
+        {
+            var sGroup = new ServiceGroup(_ctx);
+            sGroup.AddUser(IdGroup, IdUser);
+            return Ok();
         }
     }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YakoiChatAPI.Models.Business;
 
-namespace YakoiChatAPI.Models.Mapper
+namespace YakoiChatAPI.Models.Business.Mapper
 {
     public class MapperGroup
     {

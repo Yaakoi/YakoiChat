@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YakoiChatAPI.Models.Services;
 using YakoiChatAPI.Models;
+using YakoiChatAPI.Models.Business;
 
 namespace YakoiChatAPI.Controllers
 {
@@ -23,7 +24,7 @@ namespace YakoiChatAPI.Controllers
 
         // GET api/user
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Models.Business.User), 200)]
+        [ProducesResponseType(typeof(User), 200)]
         public async Task<IActionResult> GetUserById(int id)
         {
             var user = new ServiceUser(_ctx).GetUserById(id);
@@ -42,10 +43,13 @@ namespace YakoiChatAPI.Controllers
         }
 
 
-        // POST api/values
+        // POST api/user
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> AddUser([FromBody] User user)
         {
+            var sUser = new ServiceUser(_ctx);
+            var xUser = sUser.Add(user);
+            return Created($"api/user/" + xUser.Id, user);
         }
 
         // PUT api/values/5
