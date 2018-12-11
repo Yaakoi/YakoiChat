@@ -18,7 +18,8 @@ namespace YakoiChatAPI.Models.Mapper
                 Email = value.Email,
                 Pseudo = value.Pseudo,
                 Password = value.Password,
-                Experience = value.Experience
+                Experience = value.Experience,
+                
             };
         }
 
@@ -33,7 +34,11 @@ namespace YakoiChatAPI.Models.Mapper
                 Pseudo = value.Pseudo,
                 Password = value.Password,
                 Experience = value.Experience,
-                IdRole = value.IdRole
+                Role = new Role
+                {
+                    Id = value.IdRole,
+                    Name = value.Role.Name
+                }
             };
         }
 
