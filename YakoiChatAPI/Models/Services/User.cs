@@ -14,10 +14,15 @@ namespace YakoiChatAPI.Models.Services
         {
             _ctx = context;
         }
+        
+        public List<Group> GetGroupsByUserId(int IdUser)
+        {
+            return (from ug in _ctx.UserGroup where ug.IdUser == IdUser select MapperGroup.Map(ug.Group)).ToList();
+        }
 
         public User GetUserById(int UserId)
         {
-            return (from u in _ctx.User where u.id == UserId select MapperUser.Map(u)).FirstOrDefault();
+            return (from u in _ctx.User where u.Id == UserId select MapperUser.Map(u)).FirstOrDefault();
         }
 
     }

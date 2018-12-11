@@ -12,9 +12,13 @@ namespace YakoiChatAPI.Models.Mapper
         {
             return new Models.Data.User
             {
-                id = value.Id,
+                Id = value.Id,
                 FirstName = value.FirstName,
-                LastName = value.LastName
+                LastName = value.LastName,
+                Email = value.Email,
+                Pseudo = value.Pseudo,
+                Password = value.Password,
+                Experience = value.Experience
             };
         }
 
@@ -22,9 +26,14 @@ namespace YakoiChatAPI.Models.Mapper
         {
             return new User
             {
-                Id = value.id,
+                Id = value.Id,
                 FirstName = value.FirstName,
-                LastName = value.LastName
+                LastName = value.LastName,
+                Email = value.Email,
+                Pseudo = value.Pseudo,
+                Password = value.Password,
+                Experience = value.Experience,
+                IdRole = value.IdRole
             };
         }
 

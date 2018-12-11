@@ -23,7 +23,8 @@ namespace YakoiChatAPI.Controllers
 
         // GET api/user
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [ProducesResponseType(typeof(Models.Business.User), 200)]
+        public async Task<IActionResult> GetUserById(int id)
         {
             var user = new ServiceUser(_ctx).GetUserById(id);
 
@@ -31,7 +32,15 @@ namespace YakoiChatAPI.Controllers
             
         }
 
-        
+        [HttpGet("{id}/groups", Name = "Groups_List")]
+        public async Task<IActionResult> GetGroupsByUserId(int id)
+        {
+            var user = new ServiceUser(_ctx).GetGroupsByUserId(id);
+
+            return Ok(user);
+
+        }
+
 
         // POST api/values
         [HttpPost]

@@ -16,6 +16,8 @@ namespace YakoiChatAPI.Models.Services
             _ctx = context;
         }
 
+
+
         public List<User> GetListUser(int GroupId)
         {
             return (from ug in _ctx.UserGroup where ug.IdGroup == GroupId select MapperUser.Map(ug.User)).ToList();

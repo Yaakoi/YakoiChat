@@ -7,8 +7,9 @@ namespace YakoiChatAPI.Models.Data
 {
     public class Group
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string DateCreation { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int NbrUserMax { get; set; }
+        public int CreatedBy { get; set; }
     }
 }

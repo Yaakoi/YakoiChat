@@ -20,7 +20,7 @@ namespace YakoiChatAPI.Controllers
         }
 
         // GET api/group/users
-        [HttpGet("/{id}/users", Name = "Users_List")]
+        [HttpGet("{id}/users", Name = "Users_List")]
         public async Task<IActionResult> GetListUser(int id)
         {
             var groupUsers = new ServiceGroup(_ctx).GetListUser(id);
