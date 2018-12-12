@@ -15,6 +15,6 @@ namespace YakoiChatAPI.Models.Data
 
         public int IdRole { get; set; }
         [ForeignKey("IdRole")]
-        public virtual Role Role { get; set; }
+        public virtual AppRole Role { get; set; }
     }
 }

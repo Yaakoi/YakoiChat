@@ -23,7 +23,7 @@ namespace YakoiChatAPI.Models.Services
         public User GetUserById(int UserId)
         {
             var user = (from u in _ctx.User where u.Id == UserId select MapperUser.Map(u)).FirstOrDefault();
-            var role = (from r in _ctx.Role join u in _ctx.User on r.Id equals u.IdRole where u.Id == UserId select MapperRole.Map(r)).FirstOrDefault();
+            var role = (from r in _ctx.AppRole join u in _ctx.User on r.Id equals u.IdRole where u.Id == UserId select MapperRole.Map(r)).FirstOrDefault();
             user.Role = role;
             return user;
         }
@@ -38,7 +38,7 @@ namespace YakoiChatAPI.Models.Services
                 Pseudo = user.Pseudo,
                 Password = user.Password,
                 Experience = 0,
-                IdRole = user.Role.Id
+                IdRole = user.AppRole.Id
             };
             _ctx.User.Add(entityUser);
             _ctx.SaveChanges();

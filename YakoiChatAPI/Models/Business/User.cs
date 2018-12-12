@@ -10,6 +10,6 @@
         public string Password { get; set; }
         public int Experience { get; set; }
 
-        public Role Role { get; set; }
+        public AppRole AppRole { get; set; }
     }
 }

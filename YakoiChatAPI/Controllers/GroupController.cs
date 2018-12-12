@@ -54,10 +54,10 @@ namespace YakoiChatAPI.Controllers
         }
 
         [HttpPost("user")]
-        public async Task<IActionResult> AddUserInGroup(int IdGroup, int IdUser)
+        public async Task<IActionResult> AddUserGroup([FromBody] Group group, int IdUser)
         {
             var sGroup = new ServiceGroup(_ctx);
-            sGroup.AddUser(IdGroup, IdUser);
+            sGroup.AddUser(group, IdUser);
             return Ok();
         }
     }

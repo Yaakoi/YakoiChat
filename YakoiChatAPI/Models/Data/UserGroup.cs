@@ -12,8 +12,6 @@ namespace YakoiChatAPI.Models.Data
         [ForeignKey("IdUser")]
         public virtual User User { get; set; }
 
-
-
         public int IdGroup { get; set; }
         [ForeignKey("IdGroup")]
         public virtual Group Group { get; set; }

@@ -9,7 +9,7 @@ namespace YakoiChatAPI.Models.Business.Mapper
 {
     public class MapperRole
     {
-        public static Role Map(Data.Role value)
+        public static Role Map(Data.AppRole value)
         {
             return new Role
             {

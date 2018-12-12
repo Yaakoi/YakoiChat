@@ -35,18 +35,18 @@ namespace YakoiChatAPI.Models.Services
                 CreatedBy = group.CreatedBy
             };
             _ctx.Group.Add(entityGroup);
-            AddUser(entityGroup.Id, idUser);
+            AddUser(entityGroup, idUser);
             _ctx.SaveChanges();
             group.Id = entityGroup.Id;
             return group;
         }
 
-        public void AddUser(int idGroup, int idUser)
+        public void AddUser(Group group, int idUser)
         {
             var entityUserGroup = new Data.UserGroup
             {
                 IdUser = idUser,
-                IdGroup = idGroup
+                IdGroup = group.Id
             };
             _ctx.UserGroup.Add(entityUserGroup);
             _ctx.SaveChanges();
